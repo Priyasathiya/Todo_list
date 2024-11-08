@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #DC143C;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #DC143C;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+button{
+  background-color: #DC143C;
+  color:#fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Adjust form layout for mobile devices */
+  div {
+    padding: 10px;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  input[type="text"], select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  input[type="submit"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  table {
+    font-size: 12px;
+  }
+  th, td {
+    padding: 5px;
+  }
+}
+
+/* Tablets and small laptops (min-width: 769px and max-width: 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Adjust form layout for tablets and small laptops */
+  div {
+    padding: 15px;
+  }
+  label {
+    display: block;
+    margin-bottom: 15px;
+  }
+  input[type="text"], select {
+    width: 80%;
+    padding: 12px;
+    margin: 12px 0;
+  }
+  input[type="submit"] {
+    width: 80%;
+    padding: 12px;
+    margin: 12px 0;
+  }
+  table {
+    font-size: 14px;
+  }
+  th, td {
+    padding: 10px;
+  }
+}
+
+/* Desktops (min-width: 1025px) */
+@media (min-width: 1025px) {
+  /* Adjust form layout for desktops */
+  div {
+    padding: 20px;
+  }
+  label {
+    display: block;
+    margin-bottom: 20px;
+  }
+  input[type="text"], select {
+    width: 70%;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  input[type="submit"] {
+    width: 70%;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  table {
+    font-size: 16px;
+  }
+  th, td {
+    padding: 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2>STUDENT FORM</h2>
+
+<div>
+  <label for="name">Name</label><br>
+  <input type="text" id="name" name="name" value=""><br>
+
+  <label for="age">Age</label><br>
+  <input type="text" id="age" name="age" value=""><br>
+
+  <label for="course">Course</label><br>
+  <select id="course" name="course">
+    <option value="Python">Python</option>
+    <option value="JavaScript">JavaScript</option>
+    <option value="Java">Java</option>
+    <option value="C++">C++</option>
+    <option value="C">C</option>
+    <option value="AI and ML">AI and ML</option>
+    <option value="Cyber Security">Cyber Security</option>
+    <option value="Full Stack Development">Full Stack Development</option>
+    <option value="Digitl Marketing">Digitl Marketing</option>
+  </select><br>
+
+  <label for="gender">Gender</label><br>
+  <input type="radio" id="male" name="gender" value="Male">
+  <label for="male">Male</label>
+  <input type="radio" id="female" name="gender" value="Female">
+  <label for="female">Female</label><br><br>
+
+  <label for="email">Email</label><br>
+  <input type="text" id="email" name="email" value=""><br><br>
+
+  <input type="submit" value="Save" onclick="addStudent()">
+</div>
+
+<h2>Student Data</h2>
+
+<table id="studentTable">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Course</th>
+    <th>Gender</th>
+    <th>Email</th>
+    <th>Action</th>
+  </tr>
+</table>
+
+<script>
+function addStudent() {
+  var name = document.getElementById("name").value;
+  var age = document.getElementById("age").value;
+  var course = document.getElementById("course").value;
+  var gender = document.querySelector('input[name="gender"]:checked').value;
+  var email = document.getElementById("email").value;
+
+  var table = document.getElementById("studentTable");
+  var row = table.insertRow(-1);
+  var nameCell = row.insertCell(0);
+  var ageCell = row.insertCell(1);
+  var courseCell = row.insertCell(2);
+  var genderCell = row.insertCell(3);
+  var emailCell = row.insertCell(4);
+  var actionCell = row.insertCell(5);
+
+  nameCell.innerHTML = name;
+  ageCell.innerHTML = age;
+  courseCell.innerHTML = course;
+  genderCell.innerHTML = gender;
+  emailCell.innerHTML = email;
+  actionCell.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+}
+
+function deleteRow(btn) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
+</script>
+
+</body>
+</html>
